@@ -9,6 +9,18 @@ namespace CoreBackend.Auth
 {
     public static class Config
     {
+        public static IEnumerable<ApiResource> apiResources => new ApiResource[]
+        {
+             new ApiResource("resource_movie_api")
+             {
+
+             },
+             new ApiResource("resource_photo_api")
+             {
+
+             }
+        };
+
         public static IEnumerable<IdentityResource> IdentityResources =>
                    new IdentityResource[]
                    {
