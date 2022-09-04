@@ -19,10 +19,11 @@ In `Config.cs`,
 [`http://localhost:5001/.well-known/openid-configuration` ]
 
 `
-   
+
+    "issuer": "http://localhost:5001",
     
     "jwks_uri": "http://localhost:5001/.well-known/openid-configuration/jwks",
-     "issuer": "http://localhost:5001",
+    
     "authorization_endpoint": "http://localhost:5001/connect/authorize",
     
     "token_endpoint": "http://localhost:5001/connect/token",
