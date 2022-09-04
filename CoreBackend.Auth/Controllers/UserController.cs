@@ -7,5 +7,9 @@ namespace CoreBackend.Auth.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        public IActionResult Test()
+        {
+            return Ok("test ok");
+        }
     }
 }
