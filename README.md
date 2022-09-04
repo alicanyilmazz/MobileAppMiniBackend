@@ -16,7 +16,7 @@ In `Config.cs`,
  We also have APIResources, which will be the place where we can define the authorizations related to these APIs if there are how many APIs there are.
  There will be 2 APIs in this project, so we defined 2 API Resources.
 
-`http://localhost:5001/.well-known/openid-configuration` 
+[`http://localhost:5001/.well-known/openid-configuration` ]
 
 `
     "issuer": "http://localhost:5001",
