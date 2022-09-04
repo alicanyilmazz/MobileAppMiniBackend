@@ -27,11 +27,12 @@ namespace CoreBackend.Auth
                 new ApiScope("api_photo_fullpermission","Photo API has all permissions."),
             };
         public static IEnumerable<IdentityResource> IdentityResources =>
-                   new IdentityResource[]
-                   {
-                    new IdentityResources.OpenId(),
-                    new IdentityResources.Profile(),
-                   };
+            new IdentityResource[]
+            { 
+              new IdentityResources.Email(),
+              new IdentityResources.OpenId(),
+              new IdentityResources.Profile(),
+            };
 
         public static IEnumerable<Client> Clients =>
             new Client[]
