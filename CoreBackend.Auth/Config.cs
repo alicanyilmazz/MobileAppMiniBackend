@@ -19,7 +19,8 @@ namespace CoreBackend.Auth
              new ApiResource("resource_photo_api")
              {
                  Scopes = { "api_photo_fullpermission" }
-             }
+             },
+             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
