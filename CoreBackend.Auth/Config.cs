@@ -57,6 +57,7 @@ namespace CoreBackend.Auth
                 new Client
                 {
                     ClientId = "MobileClient_CICSEP",
+                    ClientName = "Mobile Client CI CS Email Password",
                     ClientSecrets = { new Secret("secret".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,

@@ -26,8 +26,10 @@ namespace CoreBackend.Auth
             Configuration = configuration;
         }
 
+        // DI and Services
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalApiAuthentication();
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -68,6 +70,7 @@ namespace CoreBackend.Auth
                 });
         }
 
+        //Middleware
         public void Configure(IApplicationBuilder app)
         {
             if (Environment.IsDevelopment())
