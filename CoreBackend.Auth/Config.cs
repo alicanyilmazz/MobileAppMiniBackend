@@ -4,6 +4,7 @@
 
 using IdentityServer4;
 using IdentityServer4.Models;
+using System;
 using System.Collections.Generic;
 
 namespace CoreBackend.Auth
@@ -43,29 +44,40 @@ namespace CoreBackend.Auth
                 // m2m client credentials flow client
                 new Client
                 {
-                    ClientId = "m2m.client",
-                    ClientName = "Client Credentials Client",
+                    ClientId = "MobileClient_CC",
+                    ClientName = "Mobile Client Credentials",
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
+                    ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    AllowedScopes = { "scope1" }
+                    AllowedScopes = { IdentityServerConstants.LocalApi.ScopeName }
                 },
 
                 // interactive client using code flow + pkce
                 new Client
                 {
-                    ClientId = "interactive",
-                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+                    ClientId = "MobileClient_CICSEP",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
 
-                    RedirectUris = { "https://localhost:44300/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
+                    //RedirectUris = { "https://localhost:44300/signin-oidc" },
+                    //FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
+                    //PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
-                    AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope2" }
+                    // AccessToken ile RefreshToken in da donmesini istiyorsak True olarak Set etmeliyiz.
+                    AllowOfflineAccess = true, 
+                    // Token almak için email , Id , Profile , gibi hangi izinlerin gerektiğini tanımladık. Kısaca bu Client hangi izinlere sahip olacak onu belirledik.
+                    AllowedScopes = { IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api_movie_fullpermission", "api_photo_fullpermission",IdentityServerConstants.StandardScopes.OfflineAccess},
+                    // AccessToken ın ömrünü verdik.
+                    AccessTokenLifetime = 600,
+                    // Mesela RefreshToken ın ömrünü 2 ay belirtmişsem bunu 2 ay boyunca kullanabileyim. (ReUse)
+                    // Eğerki bir kere kullanmak istiyorsam OneTimeOnly olarak belirtmeliyiz.
+                    RefreshTokenUsage = TokenUsage.ReUse,
+
+                    RefreshTokenExpiration = TokenExpiration.Absolute, // .Sliding olarak da verebiliriz -- Aşağıda ise süre tanımlamalarını yapıyoruz.
+                    //SlidingRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds, // 2 aylık süre içerisinde her RefreshToken aldıgınızda RefreshToken ın ömrünü 2 ay daha uzatır.
+                    AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,  // 2 aylık süre belirlediysek bu süre sonunda RefreshToken gecerliliği biter.                 
                 },
             };
     }
