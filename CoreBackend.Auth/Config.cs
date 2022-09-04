@@ -13,11 +13,11 @@ namespace CoreBackend.Auth
         {
              new ApiResource("resource_movie_api")
              {
-
+                 Scopes = { "api_movie_fullpermission" }
              },
              new ApiResource("resource_photo_api")
              {
-
+                 Scopes = { "api_photo_fullpermission" }
              }
         };
         public static IEnumerable<ApiScope> ApiScopes =>
