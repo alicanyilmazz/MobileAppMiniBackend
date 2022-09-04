@@ -23,8 +23,8 @@ namespace CoreBackend.Auth
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("scope1"),
-                new ApiScope("scope2"),
+                new ApiScope("api_movie_fullpermission","Movie API has all permissions."),
+                new ApiScope("api_photo_fullpermission","Photo API has all permissions."),
             };
         public static IEnumerable<IdentityResource> IdentityResources =>
                    new IdentityResource[]
