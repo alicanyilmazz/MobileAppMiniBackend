@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
@@ -25,6 +26,7 @@ namespace CoreBackend.Auth
             {
                 new ApiScope("api_movie_fullpermission","Movie API has all permissions."),
                 new ApiScope("api_photo_fullpermission","Photo API has all permissions."),
+                new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
         public static IEnumerable<IdentityResource> IdentityResources =>
             new IdentityResource[]
