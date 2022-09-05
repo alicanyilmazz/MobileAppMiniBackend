@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static IdentityServer4.IdentityServerConstants;
 
 namespace CoreBackend.Auth.Controllers
 {
@@ -7,6 +9,7 @@ namespace CoreBackend.Auth.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        [Authorize(LocalApi.PolicyName)]
         public IActionResult Test()
         {
             return Ok("test ok");
