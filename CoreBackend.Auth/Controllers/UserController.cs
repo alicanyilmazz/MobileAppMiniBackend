@@ -14,5 +14,10 @@ namespace CoreBackend.Auth.Controllers
         {
             return Ok("test ok");
         }
+
+        public IActionResult SignUp()
+        {
+            return Ok("test ok");
+        }
     }
 }
