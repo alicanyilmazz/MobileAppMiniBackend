@@ -13,6 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CoreBackend.Auth.Services;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using CoreBackend.Auth.Validation;
 
 namespace CoreBackend.Auth
 {
@@ -32,6 +35,12 @@ namespace CoreBackend.Auth
         {
             services.AddLocalApiAuthentication();
             services.AddControllersWithViews();
+            //services.AddControllersWithViews().AddFluentValidation(options =>
+            //{
+            //    options.RegisterValidatorsFromAssemblyContaining<Startup>();
+            //});
+            services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+            services.AddScoped<IValidator<SignUpViewModel>,SignUpViewModelValidator>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
