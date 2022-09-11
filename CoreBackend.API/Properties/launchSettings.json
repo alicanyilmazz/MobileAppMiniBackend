@@ -22,7 +22,8 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      //"launchUrl": "swagger",
+      "launchUrl": "odata/movies",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
