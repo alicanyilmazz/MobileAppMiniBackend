@@ -21,7 +21,7 @@ namespace CoreBackend.Auth.Controllers
         {
             _userManager = userManager;
         }
-      
+
         public IActionResult Test()
         {
             return Ok("test ok");
@@ -34,7 +34,7 @@ namespace CoreBackend.Auth.Controllers
             user.UserName = signUpViewModel.UserName;
             user.Email = signUpViewModel.Email;
             user.Country = signUpViewModel.Country;
-            var result = await _userManager.CreateAsync(user,signUpViewModel.Password);
+            var result = await _userManager.CreateAsync(user, signUpViewModel.Password);
 
             if (!result.Succeeded)
             {
@@ -58,8 +58,9 @@ namespace CoreBackend.Auth.Controllers
             if (user == null)
                 return BadRequest();
 
-            var userDto = new ApplicationUser();
+            var userDto = new ApplicationUser { UserName = user.UserName, Email = user.Email, Country = user.Country };
 
+            return Ok(userDto); 
         }
     }
 }
