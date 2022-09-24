@@ -1,8 +1,7 @@
 ﻿namespace CoreBackend.API.Models
 {
-    public class Movie
+    public class Movie : BaseProperties
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
         public DateTime ReleaseDate { get; set; }
