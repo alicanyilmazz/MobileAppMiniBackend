@@ -13,7 +13,8 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      //"launchUrl": "swagger",
+      "launchUrl": "odata/movies",
       "applicationUrl": "https://localhost:7161;http://localhost:5161",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -22,8 +23,8 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      //"launchUrl": "swagger",
-      "launchUrl": "odata/movies",
+      "launchUrl": "swagger",
+      //"launchUrl": "odata/movies",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
