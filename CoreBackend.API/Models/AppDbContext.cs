@@ -24,9 +24,9 @@ namespace CoreBackend.API.Models
             modelBuilder.Entity<Movie>().Property(x => x.CreatedDate).ValueGeneratedOnAdd();
             modelBuilder.Entity<Category>().Property(x => x.CreatedDate).ValueGeneratedOnAdd();
 
-            //modelBuilder.Entity<Actress>().Property(x => x.CreatedDate).HasDefaultValueSql("getdate()");
-            //modelBuilder.Entity<Movie>().Property(x => x.CreatedDate).HasDefaultValueSql("getdate()");
-            //modelBuilder.Entity<Category>().Property(x => x.CreatedDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Actress>().Property(x => x.CreatedDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Movie>().Property(x => x.CreatedDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Category>().Property(x => x.CreatedDate).HasDefaultValueSql("getdate()");
             //HasColumnType("decimal(18,2)")
 
             modelBuilder.Entity<Actress>().Property(x => x.UpdatedDate).HasDefaultValueSql("getdate()");
@@ -41,7 +41,7 @@ namespace CoreBackend.API.Models
             // Movie Properties Definitions
             modelBuilder.Entity<Movie>().Property(x => x.Name).HasColumnName("Name").HasMaxLength(100).IsRequired(); //.HasColumnType(nvarchar)
             modelBuilder.Entity<Movie>().Property(x => x.Author).HasColumnName("Author").HasMaxLength(100).IsRequired(); //.HasColumnType(nvarchar)
-            modelBuilder.Entity<Movie>().Property(x => x.PhotoPath).HasColumnName("PhotoPath").HasMaxLength(100).IsRequired(); //.HasColumnType(nvarchar)
+            modelBuilder.Entity<Movie>().Property(x => x.PhotoPath).HasColumnName("PhotoPath").HasMaxLength(500); //.HasColumnType(nvarchar)
             modelBuilder.Entity<Movie>().Property(x => x.ReleaseDate).HasColumnName("ReleaseDate");
 
             // Category Properties Definitions
