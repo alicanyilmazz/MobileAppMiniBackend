@@ -1,4 +1,5 @@
 using CoreBackend.API.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OData.Edm;
@@ -22,6 +23,13 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+{
+    options.Authority = "http://localhost:5001";
+    options.Audience = "resource_movie_api";
+    options.RequireHttpsMetadata = false;
+});
+
 builder.Services.AddControllers().AddOData(opt => opt.AddRouteComponents("odata", GetEdmModel()).Select().Expand().OrderBy().Count().Filter()); //Select().Expand().OrderBy().Count().Filter()
 
 
@@ -35,7 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
