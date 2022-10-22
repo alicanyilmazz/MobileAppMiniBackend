@@ -1,4 +1,5 @@
 ﻿using CoreBackend.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreBackend.API.Controllers
 {
+    [Authorize]
     public class LuvviesController : ODataController
     {
         private readonly AppDbContext _context;
