@@ -1,19 +1,25 @@
 using CoreBackend.API.Models;
+using CoreBackend.Shared.Extension;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using System.Reflection;
+using FluentValidation;
+using CoreBackend.Shared.Filter;
+using FluentValidation.AspNetCore;
+using CoreBackend.API.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MoviesValidator>());
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
-
+builder.Services.UseCustomValidationResponse();
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
@@ -42,6 +48,7 @@ if (app.Environment.IsDevelopment())
     //app.UseSwaggerUI();
 }
 
+app.UseCustomException();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
