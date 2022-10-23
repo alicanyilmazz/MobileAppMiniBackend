@@ -1,3 +1,4 @@
+using CoreBackend.Shared.Extension;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
+builder.Services.UseCustomValidationResponse();
 //builder.Services.AddDbContext<AppDbContext>(x =>
 //{
 //    x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), option =>
@@ -35,6 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCustomException();
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthentication();

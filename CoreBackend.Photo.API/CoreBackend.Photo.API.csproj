@@ -22,7 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Validation\" />
     <Folder Include="wwwroot\photos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreBackend.Shared\CoreBackend.Shared.csproj" />
   </ItemGroup>
 
 </Project>
