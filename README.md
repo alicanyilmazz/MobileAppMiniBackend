@@ -42,7 +42,7 @@ In `Config.cs`,
 
 
 ` 
-
+https://github.com/FluentValidation/FluentValidation/issues/1965
 
 
 
